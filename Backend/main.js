@@ -2,17 +2,19 @@ var express = require('express');
 var path = require('path');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var mongoose=require('mongoose');
+
 
 function configureEndpoints(app) {
-    mongoose.connect("mongodb://localhost/6060");
+    var mongoose=require("./mongoose");
     var pages = require('./pages');
     var api = require('./api');
-
     //Налаштування URL за якими буде відповідати сервер
     //Отримання списку піц
+
     app.get('/api/get-pizza-list/', api.getPeopleList);
     //app.post('/api/create-order/', api.createOrder);
+
+    mongoose.mongooseStart();
 
     //Сторінки
     //Головна сторінка

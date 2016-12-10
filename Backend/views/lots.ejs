@@ -1,6 +1,4 @@
 <% include header.ejs%>
-</header>
-<body>
 <div class="container">
     <div class="center">
         <div id="breadcrumbs">
@@ -85,4 +83,26 @@
         </div>
     </div>
 </div>
+
+<!-- Button to go up-->
+<a href="#" class="scrollup btn btn-lg" style="display: inline;">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+</a>
+
+<script>
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) {
+            $('.scrollup').fadeIn();
+        } else {
+            $('.scrollup').fadeOut();
+        }
+    });
+    $('.scrollup').click(function() {
+        $("html, body").animate({
+            scrollTop: 0
+        }, 600);
+        return false;
+    });
+</script>
+
 <% include footer.ejs%>
