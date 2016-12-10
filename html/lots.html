@@ -5,12 +5,13 @@
 <head lang="uk">
     <meta charset="UTF-8">
     <!-- Bootsrap CSS -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
     <!-- LESS основний файл -->
     <link rel="stylesheet/less" type="text/css" href="../css/main.less"/>
     <link rel="stylesheet/less" type="text/css" href="../css/home.less"/>
+    <link rel="stylesheet/less" type="text/css" href="../css/lots.less"/>
 
     <!-- LESS JavaScript компілятор -->
 
@@ -20,11 +21,11 @@
 
 <header>
     <div class="logo">
-        <img src="../logo.png" width="135" height="52">
+        <img src="../logo_KMA.svg" width="135" height="52">
     </div>
     <ul class="header-nav">
         <li><a href="home.html">Home</a></li>
-        <li><a href="lots.html">Lots</a></li>
+        <li class="active"><a href="lots.html">Lots</a></li>
         <li><a href="#">Profile</a></li>
     </ul>
 </header>
@@ -95,18 +96,28 @@
 
 </div>
 
+<!-- Button to go up-->
+<a href="#" class="scrollup btn btn-lg" style="display: inline;">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+</a>
+
+
+
 <footer>
     <div class="row">
         <div class="logo">
-            <img src="../logo.png" width="135" height="52">
+            <img src="../logo_KMA.svg" width="135" height="52">
         </div>
         <div id="footer" class="row">
             <div class="copyright">
-                <p>Copyright © 2016 AuctionKMA • <a href="http://www.ukma.edu.ua/eng/"/> National University of Kyiv-Mohyla Academy •&nbsp;</p>
+                <p>Copyright © 2016 AuctionKMA • <a href="http://www.ukma.edu.ua/eng/"/> National University of
+                    Kyiv-Mohyla Academy •&nbsp;</p>
             </div>
         </div>
     </div>
 </footer>
+
+
 <!-- jQuery JavaScript
 <script src="js/profile.js"></script> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -114,5 +125,20 @@
 <!--Bootsrap JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+<script>
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) {
+            $('.scrollup').fadeIn();
+        } else {
+            $('.scrollup').fadeOut();
+        }
+    });
+    $('.scrollup').click(function() {
+        $("html, body").animate({
+            scrollTop: 0
+        }, 600);
+        return false;
+    });
+</script>
 </body>
 </html>
