@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>Facebook&Vk Login JavaScript Examples</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+
+<div id="vk_api_transport"></div>
+<script src="http://vkontakte.ru/js/api/openapi.js" type="text/javascript"></script>
+
+
+<div id="vk_login_button" onclick="VK.Auth.login(authInfo, VK.access.EMAIL);">Войти ВКонтакте</div>
+<script type="text/javascript">
+    var im ;
+    VK.init({
+        apiId: 5768708
+    });
+
+    function authInfo(response) {
+        if (response.session) {
+            //alert('user: '+response.session.mid);
+            getInitData();
+        }
+    }
+
+    function getInitData() {
+        var code;
+        code = 'return {'
+        code += 'me: API.getProfiles({uids: API.getVariable({key: 1280}),  fields: "photo"})[0]';
+        code += '};';
+        VK.Api.call('execute', { 'code': code }, onGetInitData);
+    }
+    function onGetInitData(data) {
+        var r;
+        if (data.response) {
+            r = data.response;
+            if (r.me) {
+                document.getElementById('image').src = r.me.photo;
+                console.log(r.me.first_name + ' ' + r.me.last_name + '<br><a href="http://vkontakte.ru/id' + r.me.uid + '">  ' + r.me.photo + "  " + r.me.gender);
+
+            }
+        }
+    }
+
+    VK.Auth.getLoginStatus(authInfo);
+    VK.UI.button('vk_login_button');
+</script>
+<img src="" style="display: block" id="image">
+
+
+
+
+<!--<script type="text/javascript">
+    VK.init({
+        apiId: 5768708
+    });
+    function authInfo(response) {
+
+        if (response.session) {
+
+            alert('user: '+response.session.mid);
+        } else {
+            alert('not auth');
+        }
+    }
+
+    VK.Auth.getLoginStatus(authInfo);
+    VK.UI.button('login_button');
+</script>-->
+
+
+<!--
+<div id="vk_auth"></div>
+<script type="text/javascript">
+    window.onload = function () {
+        VK.init({apiId: 5768708});
+        VK.Widgets.Auth('vk_auth', {});
+    }
+</script>
+<button onclick="VK.Auth.login()">Login with Vk</button>
+-->
+
+
+
+<!--VK login-->
+
+
+
+</body>
+</html>
