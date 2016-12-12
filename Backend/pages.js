@@ -15,3 +15,9 @@ exports.lots = function(req, res) {
         pageTitle:'lots'
     });
 };
+
+exports.profile = function (req, res) {
+    res.render('profile',{
+        pageTitle:'Profile'
+    });
+};
