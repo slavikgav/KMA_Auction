@@ -55,6 +55,7 @@
     /**
      * FAcebook script
      * */
+    
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
@@ -78,7 +79,6 @@
                     'into Facebook.';
         }
     }
-
     // This function is called when someone finishes with the Login
     // Button.  See the onlogin handler attached to it in the sample
     // code below.
@@ -87,7 +87,6 @@
             statusChangeCallback(response);
         });
     }
-
     window.fbAsyncInit = function () {
         FB.init({
             appId: '547022722158282',
@@ -96,7 +95,6 @@
             xfbml: true,  // parse social plugins on this page
             version: 'v2.8' // use graph api version 2.8
         });
-
         // Now that we've initialized the JavaScript SDK, we call
         // FB.getLoginStatus().  This function gets the state of the
         // person visiting this page and can return one of three states to
@@ -108,23 +106,16 @@
         //    your app or not.
         //
         // These three cases are handled in the callback function.
-
-
         /**
          *    comment getLoginStatus to login very time you are on page
          * */
-
         /*  FB.getLoginStatus(function (response) {
          statusChangeCallback(response);
          });*/
-
         /* FB.Event.subscribe('auth.login', function(resp) {
          window.location = 'http://localhost:6163/profile.html';
          });*/
-
     };
-
-
     // Load the SDK asynchronously
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -134,22 +125,33 @@
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function testAPI() {
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me?fields=id,name,email,gender,permissions', function (response) {
             if(response && !response.error) {
-                console.log('Successful login for: ' + response.name);
 
-
+                router.post('/profile',function (req,res) {
+                    var newuser = new User();
+                    newuser.name = response.name;
+                    newuser.gender = response.gender;
+                    newuser.favouriteBids = response.favouriteBids;
+                    newuser.bids = response.bids;
+                    newuser.save(function (err, savedUser) {
+                        if (err) {
+                            console.log(err)
+                            return res.status(500).send();
+                        }
+                        return res.status(200).send();
+                    })
+                });
+                 console.log('Successful login for: ' + response.name);
                 document.getElementById('status').innerHTML =
                         'Thanks for logging in, ' + response.name+", email = "+ response.email+", gender = "+response.gender+",id= https://www.facebook.com/"+response.id;
                 console.log('Successful login for: ' + response.id);
                 console.log('Successful login for: ' + response.email);
                 document.getElementById("profileImage").setAttribute("src", "http://graph.facebook.com/" + response.id + "/picture?type=normal");
-
                 document.getElementById("profileImage1").setAttribute("src", "http://graph.facebook.com/" + response.id + "/picture?type=normal");
             }
         });
@@ -166,14 +168,12 @@
     VK.init({
         apiId: 5768708
     });
-
     function authInfo(response) {
         if (response.session) {
             //alert('user: '+response.session.mid);
             getInitData();
         }
     }
-
     function getInitData() {
         var code;
         code = 'return {'
@@ -195,11 +195,9 @@
                 }else gender = "male";
                 document.getElementById('name').innerHTML = "Name = "+r.me.first_name + ' ' + r.me.last_name + ", id = "+r.me.uid+" gender "+gender;
                 console.log(r.me.first_name + ' ' + r.me.last_name + '<br><a href="http://vkontakte.ru/id' + r.me.uid + '">  ' + r.me.photo + "  " + r.me.gender);
-
             }
         }
     }
-
     // VK.Auth.getLoginStatus(authInfo);
     VK.UI.button('vk_login_button');
 </script>

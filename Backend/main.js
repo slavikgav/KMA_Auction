@@ -2,19 +2,22 @@ var express = require('express');
 var path = require('path');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-
+var routes= express.Router();
+//var user= require('routes/users');
 
 function configureEndpoints(app) {
     var mongoose=require("./mongoose");
     var pages = require('./pages');
     var api = require('./api');
+    var mongo = require('./app');
+    //var fs= require('fs');
+    mongo.startMongo();
+    //app.use(app.router);
     //Налаштування URL за якими буде відповідати сервер
     //Отримання списку піц
 
     app.get('/api/get-pizza-list/', api.getPeopleList);
     //app.post('/api/create-order/', api.createOrder);
-
-    mongoose.mongooseStart();
 
     //Сторінки
     //Головна сторінка
@@ -24,6 +27,22 @@ function configureEndpoints(app) {
     app.get('/person.html', pages.person);
     app.get('/profile.html', pages.profile);
 
+    app.get('/users/:userId', function (req,res) {
+        mongoose.model('users').find({user:req.params.userId}),
+            res.send(users);
+    });
+
+    /*
+    fs.readdirSync(__dirname + '/models').forEach(function () {
+        if(~filename.indexOf('.js')) require(__dirname + '/')
+    });
+
+    app.get('/users' ,function (req,res) {
+        mongoose.model('users').find(function (err,users) {
+            res.send(users);
+        })
+    })
+ */
     //Якщо не підійшов жоден url, тоді повертаємо файли з папки www
     app.use(express.static(path.join(__dirname, '../Frontend/www')));
 }
