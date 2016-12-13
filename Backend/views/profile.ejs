@@ -66,9 +66,12 @@
             /**
              *    comment getLoginStatus to login very time you are on page
              * */
-            /*  FB.getLoginStatus(function (response) {
+
+             /* FB.getLoginStatus(function (response) {
              statusChangeCallback(response);
              });*/
+
+
             /* FB.Event.subscribe('auth.login', function(resp) {
              window.location = 'http://localhost:6163/profile.html';
              });*/
@@ -89,27 +92,14 @@
             FB.api('/me?fields=id,name,email,gender,permissions', function (response) {
                 if(response && !response.error) {
 
-                    /*  router.post('/profile',function (req,res) {
-                     var newuser = new User();
-                     newuser.name = response.name;
-                     newuser.gender = response.gender;
-                     newuser.favouriteBids = response.favouriteBids;
-                     newuser.bids = response.bids;
-                     newuser.save(function (err, savedUser) {
-                     if (err) {
-                     console.log(err)
-                     return res.status(500).send();
-                     }
-                     return res.status(200).send();
-                     })
-                     });*/
                     console.log('Successful login for: ' + response.name);
+                    document.getElementById('profile_name').innerHTML=response.name;
                     document.getElementById('status').innerHTML =
                             'Thanks for logging in, ' + response.name+", email = "+ response.email+", gender = "+response.gender+",id= https://www.facebook.com/"+response.id;
                     console.log('Successful login for: ' + response.id);
                     console.log('Successful login for: ' + response.email);
-                    document.getElementById("profileImage").setAttribute("src", "http://graph.facebook.com/" + response.id + "/picture?type=normal");
-                    document.getElementById("profileImage1").setAttribute("src", "http://graph.facebook.com/" + response.id + "/picture?type=normal");
+                    document.getElementById("profile_image").setAttribute("src", "http://graph.facebook.com/" + response.id + "/picture?type=normal");
+
                 }
             });
         }
@@ -138,13 +128,14 @@
             if (data.response) {
                 r = data.response;
                 if (r.me) {
-                    document.getElementById('image').src = r.me.photo;
+                    document.getElementById('profile_image').src = r.me.photo;
                     var gender;
                     if(r.me.sex == 0){
                         gender="undefined"
                     }else if(r.me.sex == 1){
                         gender = "female";
                     }else gender = "male";
+                    document.getElementById('profile_name').innerHTML=r.me.first_name + ' ' + r.me.last_name;
                     document.getElementById('name').innerHTML = "Name = "+r.me.first_name + ' ' + r.me.last_name + ", id = "+r.me.uid+" gender "+gender;
                     console.log(r.me.first_name + ' ' + r.me.last_name + '<br><a href="http://vkontakte.ru/id' + r.me.uid + '">  ' + r.me.photo + "  " + r.me.gender);
 
@@ -167,14 +158,29 @@
 
 <div id="status"></div>
 
-<img src="" id="profileImage"/>
 
 <p id="name"></p>
 <img src="" style="display: block" id="image">
 
 <div class="container">
     <div class="profile-name">
+    </div>
+    <div class="row">
+    <div class="left-col col-lg-3 col-md-3  col-sm-3">
 
+        <div id="profile_photo_name">
+        <div class="col-lg-8">
+            <img src="" id="profile_image">
+        </div>
+        <div class="col-lg-4">
+            <h3 id="profile_name"></h3>
+        </div>
+        </div>
+
+
+
+    </div>
+    <div class="right-col col-lg-8 col-md-8 col-sm-8"></div>
     </div>
 </div>
 <% include footer.ejs%>
