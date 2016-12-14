@@ -11,7 +11,7 @@
             <ul id="sort">
                 <li class="filter">
                     <p>Sort by</p>
-                    <select class="select-filter">
+                    <select class="select-filter" id="time_select">
                         <option value="all">All</option>
                         <option value="newest">Oldest to Newest</option>
                         <option value="oldest">Newest to oldest</option>
@@ -20,14 +20,14 @@
                 </li>
                 <li class="filter">
                     <p>Sort by price</p>
-                    <select class="select-filter">
+                    <select class="select-filter" id="price_select">
                         <option value="All">All</option>
                         <option value="best-selling">Best selling</option>
                     </select>
                 </li>
                 <li class="filter">
                     <p>Sort by name</p>
-                    <select class="select-filter">
+                    <select class="select-filter" id="name_select">
                         <option value="All">All</option>
                         <option value="name-ascending">A-Z</option>
                         <option value="name-descending">Z-A</option>
@@ -35,11 +35,14 @@
                 </li>
                 <li class="filter">
                     <p>Sort by gender</p>
-                    <select class="select-filter">
+                    <select class="select-filter" id="gender_select">
                         <option value="All">All</option>
                         <option value="man">Mrs</option>
                         <option value="woman">Mr</option>
                     </select>
+                </li>
+                <li>
+                    <button onclick="sortLots()">Sort</button>
                 </li>
             </ul>
 
@@ -52,34 +55,24 @@
         <span class="glyphicon glyphicon-chevron-up"></span>
     </a>
 
-    <script>
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 100) {
-                $('.scrollup').fadeIn();
-            } else {
-                $('.scrollup').fadeOut();
-            }
-        });
-        $('.scrollup').click(function() {
-            $("html, body").animate({
-                scrollTop: 0
-            }, 600);
-            return false;
-        });
-    </script>
 
-    <div class="content row">
+    <div class="content row" id="cart">
         <div class="person-content col-lg-4 col-md-6 col-sm-6">
+            <h2 class="profile_name">Yaroslav Tykhonchuk</h2>
+            <span class="price">Price 20$</span><span class="gender">Male</span>
             <a href="person.html"> <img
                     src="https://cdn.shopify.com/s/files/1/0328/8037/products/5BORO_5B_X_GA_Longsleeve_Back_large.jpg?v=1480302364"></a>
+
         </div>
         <div class="person-content col-lg-4 col-md-6 col-sm-6">
+            <h2 class="profile_name">Yaroslav Tykhonchuk</h2>
             <a href="person.html"> <img
-                    src="https://cdn.shopify.com/s/files/1/0328/8037/products/5BORO_5B_X_GA_Longsleeve_Back_large.jpg?v=1480302364"></a>
+                        src="https://cdn.shopify.com/s/files/1/0328/8037/products/5BORO_5B_X_GA_Longsleeve_Back_large.jpg?v=1480302364"></a>
         </div>
         <div class="person-content col-lg-4 col-md-6 col-sm-6">
+            <h2 class="profile_name">Yaroslav Tykhonchuk</h2>
             <a href="person.html"> <img
-                    src="https://cdn.shopify.com/s/files/1/0328/8037/products/5BORO_5B_X_GA_Longsleeve_Back_large.jpg?v=1480302364"></a>
+                        src="https://cdn.shopify.com/s/files/1/0328/8037/products/5BORO_5B_X_GA_Longsleeve_Back_large.jpg?v=1480302364"></a>
         </div>
     </div>
 </div>
@@ -104,5 +97,6 @@
         return false;
     });
 </script>
+<script  type="text/javascript" src="js/sort_lots.js"></script>
 
 <% include footer.ejs%>

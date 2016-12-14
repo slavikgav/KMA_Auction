@@ -1,6 +1,7 @@
 var collection;
 var _db;
 var _format;
+var results=[];
 function startMongo() {
     var MongoClient = require('mongodb').MongoClient
         , format = require('util').format;
@@ -17,10 +18,15 @@ function startMongo() {
                 name: "Ex1",
                 socialNetworkId: String,
                 gender: "Male",
-                favouriteBids: [], // User's favourites bids , but not bought yet.
-                bids: [],
+                price:0,
                 imgSrc: String
             };
+
+            var kek = collection.find({'imgSrc' : '123'});
+            console.log("we are in kek");
+          //  console.log(kek);
+
+
            // insertToTest(lol);
 
           /*  collection.insert(lol, function (err, docs) {
@@ -36,19 +42,19 @@ function startMongo() {
                 _db.close();
             });*/
         }
-      //  collection.remove({"gender": "null"});//Delete object which has a : 2
+       // collection.remove({"bids": null});//Delete object which has a : 2
 
-       /* collection.find().toArray(function (err, results) {
+        collection.find().toArray(function (err, results) {
+            results = results;
             console.dir(results);
             // Let's close the db
             _db.close();
         });
-*/
     });
 }
 function insertToTest(data) {
-    console.log("indef?");
-    console.log(_format==undefined);
+   /* console.log("indef?");
+    console.log(_format==undefined);*/
     console.log("in insertToTest");
     collection.insert(data, function (err, docs) {
         collection.count(function (err, count) {
@@ -78,22 +84,10 @@ var user =  req.body;
         name: user.name,
         socialNetworkId: user.socialNetworkId,
         gender: user.gender,
-        favouriteBids: user.favouriteBids, // User's favourites bids , but not bought yet.
-        bids: user.bids,
+        price: user.price,
         imgSrc: user.imgSrc
     };
 
-   /* var lol1 = {
-        name: "Eaaaa",
-        socialNetworkId: String,
-        gender: "Male",
-        favouriteBids: [], // User's favourites bids , but not bought yet.
-        bids: [],
-        imgSrc: "sdf"
-    };*/
-   /* console.log(req.body.data);
-    var data= decodeURI(req.body.data);
-    console.log(data);*/
 
     insertToTest(Yara);
 
