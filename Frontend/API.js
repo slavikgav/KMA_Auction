@@ -1,4 +1,4 @@
-var API_URL = "http://localhost:6060";
+var API_URL = "http://localhost:5050";
 
 function backendGet(url, callback) {
     $.ajax({
@@ -13,12 +13,13 @@ function backendGet(url, callback) {
     })
 }
 
-function backendPost(url, data, callback) {
+function backendPost(url, user, callback) {
+    console.log(user);
     $.ajax({
         url: API_URL + url,
         type: 'POST',
         contentType : 'application/json',
-        data: JSON.stringify(data),
+        data: JSON.stringify(user),
         success: function(data){
             callback(null, data);
         },
@@ -28,14 +29,14 @@ function backendPost(url, data, callback) {
     })
 }
 
+/*
 exports.getPeopleList = function(callback) {
     backendGet("/api/getPeopleList/", callback);
 };
+*/
 
-/*
 
-exports.createOrder = function(order_info, callback) {
-    backendPost("/api/create-order/", order_info, callback);
+exports.insertTo = function(order_info, callback) {
+    backendPost("/api/insertTo/", order_info, callback);
 };
 
-*/

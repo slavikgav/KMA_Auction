@@ -3,11 +3,12 @@
 
 <div class="modal-body hide">
     <div id="logToApp">
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-        </fb:login-button>
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+            </fb:login-button>
     </div>
     <div id="vk_login_button" onclick="VK.Auth.login(authInfo, VK.access.EMAIL);">Войти ВКонтакте</div>
     <script>
+
 
         /**
          * FAcebook script
@@ -185,42 +186,16 @@
             </ul>
         </div>
         <div class="modal-footer">
-            <button id="btn-submit-lot">Add lot</button>
+            <button id="btn-submit-lot" onclick="addToDB()">Add lot</button>
         </div>
     </div>
 
 </div>
 
-<script>
-    // Get the modal
-    var modal = document.getElementById('myModal');
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("addLotBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
+<script src="dbFunction.js"></script>
 
 
-
+<button onclick="addToDB()">asd</button>
 
 <div id="status"></div>
 
@@ -242,8 +217,6 @@
             <h3 id="profile_name"></h3>
         </div>
         </div>
-
-
 
     </div>
     <div class="right-col col-lg-8 col-md-8 col-sm-8"></div>
