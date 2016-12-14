@@ -9,15 +9,15 @@ function configureEndpoints(app) {
     var mongoose=require("./mongoose");
     var pages = require('./pages');
     var api = require('./api');
-    var mongo = require('./app');
+    var mongo = require('./api');
     //var fs= require('fs');
     mongo.startMongo();
     //app.use(app.router);
     //Налаштування URL за якими буде відповідати сервер
     //Отримання списку піц
+    app.get('/api/get-pizza-list/', api.insertTo);
+    app.post('/api/insertTo/', api.insertTo);
 
-    app.get('/api/get-pizza-list/', api.getPeopleList);
-    //app.post('/api/create-order/', api.createOrder);
 
     //Сторінки
     //Головна сторінка
