@@ -3,17 +3,14 @@
 
 <div class="modal-body hide">
     <div id="logToApp">
-            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-            </fb:login-button>
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
     </div>
     <div id="vk_login_button" onclick="VK.Auth.login(authInfo, VK.access.EMAIL);">Войти ВКонтакте</div>
     <script>
-
-
         /**
          * FAcebook script
          * */
-
         // This is called with the results from from FB.getLoginStatus().
         function statusChangeCallback(response) {
             console.log('statusChangeCallback');
@@ -67,12 +64,9 @@
             /**
              *    comment getLoginStatus to login very time you are on page
              * */
-
-              FB.getLoginStatus(function (response) {
-             statusChangeCallback(response);
-             });
-
-
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
             /* FB.Event.subscribe('auth.login', function(resp) {
              window.location = 'http://localhost:6163/profile.html';
              });*/
@@ -92,37 +86,34 @@
             console.log('Welcome!  Fetching your information.... ');
             FB.api('/me?fields=id,name,email,gender,permissions', function (response) {
                 if(response && !response.error) {
-
+                    document.getElementById('addLotBtn').style.display = 'block';
                     console.log('Successful login for: ' + response.name);
                     document.getElementById('profile_name').innerHTML=response.name;
-                    document.getElementById('profile_Id').innerHTML="https://www.facebook.com/"+response.id;
+                    document.getElementById('profile_Id').innerHTML="www.facebook.com/"+response.id;
                     document.getElementById('profile_gender').innerHTML=response.gender;
-                    document.getElementById('status').innerHTML =
-                            'Thanks for logging in, ' + response.name+", email = "+ response.email+", gender = "+response.gender+",id= https://www.facebook.com/"+response.id;
+                    /*document.getElementById('status').innerHTML =
+                     'Thanks for logging in, ' + response.name+", email = "+ response.email+", gender = "+response.gender+",id= https://www.facebook.com/"+response.id;*/
                     console.log('Successful login for: ' + response.id);
                     console.log('Successful login for: ' + response.email);
                     document.getElementById("profile_image").setAttribute("src", "http://graph.facebook.com/" + response.id + "/picture?type=normal");
-
                 }
             });
         }
-
         var im ;
         VK.init({
             apiId: 5768708
         });
-
         function authInfo(response) {
             if (response.session) {
                 //alert('user: '+response.session.mid);
                 getInitData();
             }
+            document.getElementById('addLotBtn').style.display = 'block';
         }
-
         function getInitData() {
             var code;
             code = 'return {'
-            code += 'me: API.getProfiles({uids: API.getVariable({key: 1280}),  fields: "sex,photo"})[0]';
+            code += 'me: API.getProfiles({uids: API.getVariable({key: 1280}),  fields: "sex,photo,city"})[0]';
             code += '};';
             VK.Api.call('execute', { 'code': code }, onGetInitData);
         }
@@ -131,7 +122,7 @@
             if (data.response) {
                 r = data.response;
                 if (r.me) {
-                    document.getElementById('profile_image').src = r.me.photo;
+                    document.getElementById('userPhoto').src = r.me.photo;
                     var gender;
                     if(r.me.sex == 0){
                         gender="undefined"
@@ -141,7 +132,6 @@
                     document.getElementById('profile_name').innerHTML=r.me.first_name + ' ' + r.me.last_name;
                     document.getElementById('name').innerHTML = "Name = "+r.me.first_name + ' ' + r.me.last_name + ", id = "+r.me.uid+" gender "+gender;
                     console.log(r.me.first_name + ' ' + r.me.last_name + '<br><a href="http://vkontakte.ru/id' + r.me.uid + '">  ' + r.me.photo + "  " + r.me.gender);
-
                 }
             }
         }
@@ -163,7 +153,7 @@
 
 
 <!-- Trigger/Open The Modal -->
-<button id="addLotBtn">Add lot</button>
+<button id="addLotBtn" style="display: none">Add lot</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -179,10 +169,11 @@
                 <li><label for="name">Photo (URL only):</label> <input type="text" name="photoUrl" id="photoUrl" value="" /></li><br>
                 <li><label for="email">Description: </label> <textarea rows="4" name="desc" id="desc" cols="50"></textarea></li><br>
                 </li><br>
+                <li><span id="status-form"></span></li>
             </ul>
         </div>
         <div class="modal-footer">
-            <button id="btn-submit-lot" onclick="addToDB()">Add lot</button>
+            <button id="btn-submit-lot hide" onclick="addToDB()" >Add lot</button>
         </div>
     </div>
 
@@ -190,7 +181,8 @@
 
 <script src="dbFunction.js"></script>
 
-
+<script>
+</script>
 
 <div id="status"></div>
 
@@ -202,21 +194,22 @@
     <div class="profile-name">
     </div>
     <div class="row">
-    <div class="left-col col-lg-3 col-md-3  col-sm-3">
+        <div class="left-col col-lg-3 col-md-3  col-sm-3">
 
-        <div id="profile_photo_name">
-        <div class="col-lg-8">
-            <img src="" id="profile_image">
+            <div id="profile_photo_name">
+                <div class="col-lg-8">
+                    <img src="" id="profile_image">
+                </div>
+                <div class="col-lg-4">
+                    <h3 ><span id="profile_name"></span></h3>
+                </div>
+            </div><br>
+            <h5 class="idTitle">Profile ID:</h5>
+            <span id="profile_Id"></span>
+            <h5 class="idGender">Profile gender:</h5>
+            <span id="profile_gender"></span>
         </div>
-        <div class="col-lg-4">
-            <h3 id="profile_name"></h3>
-        </div>
-        </div>
-        <p id="profile_Id"></p>
-        <p id="profile_gender"></p>
-
-    </div>
-    <div class="right-col col-lg-8 col-md-8 col-sm-8"></div>
+        <div class="right-col col-lg-8 col-md-8 col-sm-8"></div>
     </div>
 </div>
 <% include footer.ejs%>
