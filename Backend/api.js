@@ -19,7 +19,7 @@ function startMongo() {
                 gender: "Male",
                 favouriteBids: [], // User's favourites bids , but not bought yet.
                 bids: [],
-                img: {data: null, contentType: null}
+                imgSrc: String
             };
            // insertToTest(lol);
 
@@ -36,7 +36,7 @@ function startMongo() {
                 _db.close();
             });*/
         }
-        //collection.remove({"gender": "Male"});//Delete object which has a : 2
+      //  collection.remove({"gender": "null"});//Delete object which has a : 2
 
        /* collection.find().toArray(function (err, results) {
             console.dir(results);
@@ -80,7 +80,7 @@ var user =  req.body;
         gender: user.gender,
         favouriteBids: user.favouriteBids, // User's favourites bids , but not bought yet.
         bids: user.bids,
-        img: {data: null, contentType: null}
+        imgSrc: user.imgSrc
     };
 
    /* var lol1 = {
@@ -89,7 +89,7 @@ var user =  req.body;
         gender: "Male",
         favouriteBids: [], // User's favourites bids , but not bought yet.
         bids: [],
-        img: {data: null, contentType: null}
+        imgSrc: "sdf"
     };*/
    /* console.log(req.body.data);
     var data= decodeURI(req.body.data);
@@ -98,19 +98,10 @@ var user =  req.body;
     insertToTest(Yara);
 
     res.send({
-        success: true,
+        success: true
     });
 }
 
 exports.startMongo = startMongo;
 
-/*
-var people_list = require('./data/People_list');
-
-exports.getPeopleList = function(req, res) {
-    res.send(people_list);
-    console.log("request sent");
-
-};
-*/
 

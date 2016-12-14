@@ -32,13 +32,20 @@ window.onclick = function (event) {
 
 function addToDB() {
 
+    var uname = document.getElementById('profile_name').innerHTML;
+    var usocId = document.getElementById('profile_Id').innerHTML;
+    var uimage=document.getElementById('photoUrl').value;
+    var ugender = document.getElementById('profile_gender').innerHTML;
+
+    console.log(uname, usocId, uimage, ugender);
+
 var Yara = {
-    name: "Yaraa123",
-    socialNetworkId: String,
-    gender: "Male",
+    name: uname,
+    socialNetworkId: usocId,
+    gender: ugender,
     favouriteBids: [], // User's favourites bids , but not bought yet.
     bids: [],
-    imgSrc: String
+    imgSrc: uimage
 };
 //var data = "&data="+encodeURI(Yara);
 $.post("/api/insertTo/", Yara, function (res) {

@@ -68,9 +68,9 @@
              *    comment getLoginStatus to login very time you are on page
              * */
 
-             /* FB.getLoginStatus(function (response) {
+              FB.getLoginStatus(function (response) {
              statusChangeCallback(response);
-             });*/
+             });
 
 
             /* FB.Event.subscribe('auth.login', function(resp) {
@@ -95,6 +95,8 @@
 
                     console.log('Successful login for: ' + response.name);
                     document.getElementById('profile_name').innerHTML=response.name;
+                    document.getElementById('profile_Id').innerHTML="https://www.facebook.com/"+response.id;
+                    document.getElementById('profile_gender').innerHTML=response.gender;
                     document.getElementById('status').innerHTML =
                             'Thanks for logging in, ' + response.name+", email = "+ response.email+", gender = "+response.gender+",id= https://www.facebook.com/"+response.id;
                     console.log('Successful login for: ' + response.id);
@@ -176,13 +178,7 @@
             <ul>
                 <li><label for="name">Photo (URL only):</label> <input type="text" name="photoUrl" id="photoUrl" value="" /></li><br>
                 <li><label for="email">Description: </label> <textarea rows="4" name="desc" id="desc" cols="50"></textarea></li><br>
-                <li><label for="gender">Gender</label>
-                    <select id="gender">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
                 </li><br>
-                <li><label for="pwd">Link:</label> <a href="#">Link on lot</a></li><br>
             </ul>
         </div>
         <div class="modal-footer">
@@ -195,7 +191,6 @@
 <script src="dbFunction.js"></script>
 
 
-<button onclick="addToDB()">asd</button>
 
 <div id="status"></div>
 
@@ -217,6 +212,8 @@
             <h3 id="profile_name"></h3>
         </div>
         </div>
+        <p id="profile_Id"></p>
+        <p id="profile_gender"></p>
 
     </div>
     <div class="right-col col-lg-8 col-md-8 col-sm-8"></div>
