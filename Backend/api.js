@@ -22,10 +22,6 @@ function startMongo() {
                 imgSrc: String
             };
 
-            var kek = collection.find({'imgSrc' : '123'});
-            console.log("we are in kek");
-          //  console.log(kek);
-
 
            // insertToTest(lol);
 

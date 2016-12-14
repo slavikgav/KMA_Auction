@@ -23,8 +23,8 @@ function addToCart(lot){
 }
 
 function updateCart() {
-
-    //Очищаємо старі піци в кошику
+    console.log("Update cart inside");
+    //Очищаємо старі лоти в кошику
     $cart.html("");
 
     //Онволення однієї піци
@@ -44,7 +44,7 @@ function updateCart() {
  */
 function initialiseCart() {
 
-
+console.log("Initialize cart inside");
    /* Cart = JSON.parse(localStorage.getItem("data"));
     if(Cart==null)Cart=[];*/
    Cart = Lot_List.lots;
