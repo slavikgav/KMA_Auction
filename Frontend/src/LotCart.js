@@ -28,8 +28,8 @@ function updateCart() {
     $cart.html("");
 
     //Онволення однієї піци
-    function showOneLotInCart(cart_item) {
-        var html_code = Templates.Lot_OneItem(cart_item);
+    function showOneLotInCart(lot) {
+        var html_code = Templates.Lot_OneItem(lot);
         var $node = $(html_code);
 
 

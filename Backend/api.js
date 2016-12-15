@@ -18,8 +18,8 @@ function startMongo() {
             //collection.remove({});//Delete object which has a : 2
 
             var data = {
-                user:"56",
-                name: "Eaaaa",
+                user:"585490",
+                name: "fdjkfd",
                 socialNetworkId: String,
                 gender: "Male",
                 price:0,
@@ -27,7 +27,7 @@ function startMongo() {
             };
 
 
-           // insertToTest(lol);
+            //insertToTest(data);
 
           /*  collection.insert(lol, function (err, docs) {
                 collection.count(function (err, count) {

@@ -1,7 +1,7 @@
 <% include header.ejs%>
 <script src="http://vkontakte.ru/js/api/openapi.js" type="text/javascript"></script>
 
-<div class="modal-body hide">
+<div class="modal-body-login hide">
     <div id="logToApp">
         <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
         </fb:login-button>
@@ -87,6 +87,7 @@
             FB.api('/me?fields=id,name,email,gender,permissions', function (response) {
                 if(response && !response.error) {
                     document.getElementById('addLotBtn').style.display = 'block';
+                    $('.modal-body-login').addClass('hide');
                     console.log('Successful login for: ' + response.name);
                     document.getElementById('profile_name').innerHTML=response.name;
                     document.getElementById('profile_Id').innerHTML="www.facebook.com/"+response.id;
@@ -109,6 +110,7 @@
                 getInitData();
             }
             document.getElementById('addLotBtn').style.display = 'block';
+            $('.modal-body-login').addClass('hide');
         }
         function getInitData() {
             var code;
@@ -141,7 +143,7 @@
 </div>
 
 <span class="glyphicon glyphicon-log-in" onclick="function authorize() {
-        $('.modal-body').removeClass('hide');
+        $('.modal-body-login').removeClass('hide');
         console.log('done')
     }
     authorize()"></span>

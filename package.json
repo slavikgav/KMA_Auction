@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build":"browserify Frontend/www/js/main.js -o Frontend/www/js/bundle.js",
+    "build": "browserify Frontend/www/js/main.js -o Frontend/www/js/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
@@ -21,6 +21,7 @@
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.14.0",
+    "file-system": "^2.2.2",
     "grunt": "^0.4.5",
     "grunt-browserify": "^4.0.1",
     "grunt-contrib-watch": "^0.6.1",

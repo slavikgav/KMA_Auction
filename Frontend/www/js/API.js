@@ -29,18 +29,10 @@ function backendPost(url, user, callback) {
     })
 }
 
-define(function(){
-    function getUsersList(callback) {
-        backendGet("/api/getUsersList/", callback);
-    }
-    return {
-        getUsersList:getUsersList
-    }
-});
-
-/*exports.getUsersList = function(callback) {
+exports.getUsersList = function(callback) {
+    console.log('get user lost')
     backendGet("/api/getUsersList/", callback);
-};*/
+}
 
 exports.insertTo = function(order_info, callback) {
     backendPost("/api/insertTo/", order_info, callback);
