@@ -3,7 +3,6 @@
  */
 
 
-
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -36,6 +35,11 @@ function addToDB() {
     var usocId = document.getElementById('profile_Id').innerHTML;
     var uimage=document.getElementById('photoUrl').value;
     var ugender = document.getElementById('profile_gender').innerHTML;
+    var desk = document.getElementById('desc').value;
+
+    if(uimage =="" || desk==""){
+        alert("Empty field")
+    }else{
 
     console.log(uname, usocId, uimage, ugender);
 
@@ -58,5 +62,5 @@ $.post("/api/insertTo/", Yara, function (res) {
     }
 })
 ;
-
+    }
 }

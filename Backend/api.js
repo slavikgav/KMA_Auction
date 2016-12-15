@@ -44,7 +44,7 @@ function startMongo() {
             */
         }
 
-       // collection.remove({"bids": null});//Delete object which has a : 2
+       // collection.remove({"price": null});//Delete object which has a : 2
         /*
         collection.find().toArray(function (err, results) {
             console.dir(results);
