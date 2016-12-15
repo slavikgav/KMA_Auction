@@ -4,7 +4,10 @@
 
 
 $(function () {
+
+    console.log("Main inside");
+
     var LotCart = require('./LotCart');
 
     LotCart.initialiseCart();
-})
+});
