@@ -2,6 +2,7 @@ var collection;
 var _db;
 var _format;
 var results=[];
+
 function startMongo() {
     var MongoClient = require('mongodb').MongoClient
         , format = require('util').format;
@@ -14,8 +15,11 @@ function startMongo() {
             console.log("successfully connected to the database");
             collection = _db.collection('test_insert');
           //if not commented creates a new object every time the server is launched
-          var lol = {
-                name: "Ex1",
+            //collection.remove({});//Delete object which has a : 2
+
+            var data = {
+                user:"56",
+                name: "Eaaaa",
                 socialNetworkId: String,
                 gender: "Male",
                 price:0,
@@ -31,27 +35,42 @@ function startMongo() {
                     _db.close();
                 });
             });
-*/
+            */
           //to remove all collection collection.remove({})
-           /* collection.count(function (err, count) {
+          /* collection.count(function (err, count) {
                 console.log(format("count = %s", count));
                 _db.close();
-            });*/
+            });
+            */
         }
-       // collection.remove({"bids": null});//Delete object which has a : 2
 
+       // collection.remove({"bids": null});//Delete object which has a : 2
+        /*
         collection.find().toArray(function (err, results) {
-            results = results;
             console.dir(results);
             // Let's close the db
             _db.close();
-        });
+        });*/
+
     });
 }
+
+exports.getUser = function(req,res){
+    collection.find({"user": req}).toArray(function (err, result) {
+        if (err) {
+            console.log(err);
+        } else if (result.length) {
+            console.log("found")
+            return result;
+        } else {
+            console.log('No document(s) found with defined "find" criteria!');
+        }
+        //Close connection
+        _db.close();
+    });
+}
+
 function insertToTest(data) {
-   /* console.log("indef?");
-    console.log(_format==undefined);*/
-    console.log("in insertToTest");
     collection.insert(data, function (err, docs) {
         collection.count(function (err, count) {
             _db.close();
@@ -71,6 +90,14 @@ function insertToTest(data) {
 
 }
 
+exports.getUsersList=function (req,res) {
+    collection.find().toArray(function (err, results) {
+        res.send({
+            results:results
+        });
+    });
+}
+
 exports.insertTo=function (req,res) {
 console.log("req");
     console.log(req.body);
@@ -83,7 +110,6 @@ var user =  req.body;
         price: user.price,
         imgSrc: user.imgSrc
     };
-
 
     insertToTest(Yara);
 

@@ -43,7 +43,8 @@ var Yara = {
     name: uname,
     socialNetworkId: usocId,
     gender: ugender,
-    price:0,
+    favouriteBids: [], // User's favourites bids , but not bought yet.
+    bids: [],
     imgSrc: uimage
 };
 //var data = "&data="+encodeURI(Yara);

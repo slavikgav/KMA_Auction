@@ -1,4 +1,4 @@
-<% include header.ejs%>
+<% include header.ejs %>
 <div class="container">
     <div class="center">
         <div id="breadcrumbs">
@@ -48,7 +48,7 @@
 
         </div>
     </div>
-
+</div>
     <!-- Button to go up-->
 
     <a href="#" class="scrollup btn btn-lg" style="display: inline;">
@@ -56,47 +56,28 @@
     </a>
 
 
-    <div class="content row" id="cart">
-        <div class="person-content col-lg-4 col-md-6 col-sm-6">
-            <h2 class="profile_name">Yaroslav Tykhonchuk</h2>
-            <span class="price">Price 20$</span><span class="gender">Male</span>
-            <a href="person.html"> <img
-                    src="https://cdn.shopify.com/s/files/1/0328/8037/products/5BORO_5B_X_GA_Longsleeve_Back_large.jpg?v=1480302364"></a>
-
-        </div>
-        <div class="person-content col-lg-4 col-md-6 col-sm-6">
-            <h2 class="profile_name">Yaroslav Tykhonchuk</h2>
-            <a href="person.html"> <img
-                        src="https://cdn.shopify.com/s/files/1/0328/8037/products/5BORO_5B_X_GA_Longsleeve_Back_large.jpg?v=1480302364"></a>
-        </div>
-        <div class="person-content col-lg-4 col-md-6 col-sm-6">
-            <h2 class="profile_name">Yaroslav Tykhonchuk</h2>
-            <a href="person.html"> <img
-                        src="https://cdn.shopify.com/s/files/1/0328/8037/products/5BORO_5B_X_GA_Longsleeve_Back_large.jpg?v=1480302364"></a>
-        </div>
+    <div class="content row" id="list">
     </div>
-</div>
 
-<!-- Button to go up-->
-<a href="#" class="scrollup btn btn-lg" style="display: inline;">
-    <span class="glyphicon glyphicon-chevron-up"></span>
-</a>
+    <!-- Button to go up-->
+    <a href="#" class="scrollup btn btn-lg" style="display: inline;">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
 
-<script>
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 100) {
-            $('.scrollup').fadeIn();
-        } else {
-            $('.scrollup').fadeOut();
-        }
-    });
-    $('.scrollup').click(function() {
-        $("html, body").animate({
-            scrollTop: 0
-        }, 600);
-        return false;
-    });
-</script>
-<script  type="text/javascript" src="js/sort_lots.js"></script>
+    <script>
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('.scrollup').fadeIn();
+            } else {
+                $('.scrollup').fadeOut();
+            }
+        });
+        $('.scrollup').click(function () {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 600);
+            return false;
+        });
+    </script>
 
-<% include footer.ejs%>
+<% include footer.ejs %>
